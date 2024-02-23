@@ -1,12 +1,14 @@
 var express = require('express');
 var cors = require('cors');
 const axios = require('axios');
+require('dotenv').config();
 
 var app = express(); 
 
 app.use(cors());
 
-const API_KEY = "X";
+const API_KEY = process.env.REACT_APP_KEY;
+console.log(API_KEY);
 
 function getPlayerPUUID(gameName, tagLine) {
     // Set up API call
@@ -20,6 +22,7 @@ function getPlayerPUUID(gameName, tagLine) {
 
 app.get('/accountdetails', async (req, res) => {
     console.log("GET /accountdetails");
+    console.log(API_KEY);
     const gameName = req.query.gamename; 
     const tagLine = req.query.tagline;
     // PUUID 
